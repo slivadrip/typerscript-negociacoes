@@ -1,9 +1,18 @@
-class View {
+declare var $: any;
 
-    protected _elemento: Element;
+abstract class View<T> {
+
+    protected _elemento: any;
 
     constructor(seletor: string) {
 
-        this._elemento = document.querySelector(seletor);
+        this._elemento = $(seletor);
     }
+
+    update(model: T) {
+
+        this._elemento.html(this.template(model));
+    }
+
+    abstract template(model: T): string;
 }
